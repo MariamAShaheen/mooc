@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :courses
  devise_for :users, controllers: { sessions: "users/sessions" , registrations: "users/registrations" }
   get 'mooc/welcome'
-
+  
+get 'lictures/:id/download', to: 'lictures#download',as:'download_licture'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
