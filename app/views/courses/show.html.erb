@@ -7,12 +7,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @course.user %>
+  <%= @course.user.id %>
 </p>
 
 
   <strong>The Lectures:</strong>
-  <% @licture.course.user.each do |lc| %>
+  <% @course.lictures.each do |lc| %>
 	<li><%= lc.content %></li>
 	  <% end %>
 
