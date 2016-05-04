@@ -3,6 +3,9 @@
 #
 # Be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+default: &default
+  adapter: mysql2
+
 development:
   <<: *default
   database: mooc4

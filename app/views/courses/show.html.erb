@@ -7,15 +7,15 @@
 
 <p>
   <strong>User:</strong>
-  <%= @course.user.id %>
+  <%= @course.user.name %>
 </p>
 
 
   <strong>The Lectures:</strong>
   <% @course.lictures.each do |lc| %>
-	<li><%= lc.content %></li>
+       <li> <%= link_to lc.content, licture_path(:id => lc.id) %></li>
 	  <% end %>
-
+ 
 
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
