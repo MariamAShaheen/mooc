@@ -1,0 +1,26 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+#
+#
+# Be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+development:
+  <<: *default
+  database: mooc4
+  username: iti
+  password: opensource
+  
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: mooc4_test
+  username: iti
+  password: opensource
+  
+production:
+  <<: *default
+  database: mooc4_production
+  username: iti
+  password: opensource
+  

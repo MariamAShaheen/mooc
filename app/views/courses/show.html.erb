@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @course.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @course.user %>
+</p>
+
+
+  <strong>The Lectures:</strong>
+  <% @licture.course.user.each do |lc| %>
+	<li><%= lc.content %></li>
+	  <% end %>
+
+
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>

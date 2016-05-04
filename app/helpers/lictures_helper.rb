@@ -1,0 +1,2 @@
+module LicturesHelper
+end

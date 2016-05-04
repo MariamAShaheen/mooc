@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mooc2</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<!--Login-->
+<%= link_to "Home", mooc_welcome_path %>
+<%= link_to "Log in", new_user_session_path %>
+<%= link_to "sign Out",  destroy_user_session_path,method: :delete%>
+<%= yield %>
+
+<!--Msg-->
+<% if user_signed_in? %>
+    you are signed in now and your data is
+<br>
+hello <%= current_user.name %>
+<br>  
+<%= link_to "Create Course", new_course_path %>
+    <br>
+<h3>name:</h3> <%= current_user.name %> 
+<h3>email:</h3> <%= current_user.email  %>
+
+    <h3>Date OF birth:</h3> <%= current_user.dateofbirth %>
+    <h3>is Female ?</h3> <%= current_user.is_female %>
+    <h3>Profile Picture:</h3>  
+
+
+    
+
+    <%= image_tag current_user.image %>
+<%  end %>
+
+</body>
+</html>

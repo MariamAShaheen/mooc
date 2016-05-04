@@ -1,0 +1,29 @@
+<%= form_for(@licture) do |f| %>
+  <% if @licture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@licture.errors.count, "error") %> prohibited this licture from being saved:</h2>
+
+      <ul>
+      <% @licture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+
+<div class="field">
+    <%= f.label :attachments %><br>
+    <%= f.file_field :attachment %>
+  <div class="field">
+    <%= f.label :course_id %><br>
+     <%= f.collection_select :course_id, Course.order(:title),:id,:title, include_blank: false %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
