@@ -1,12 +1,13 @@
 RailsAdmin.config do |config|
-config.included_models = ["Comment", "course", "licture" ,"user"]
+config.included_models = ["Comment", "Course", "Licture" ,"User"]
+  #ActiveRecord::Base.descendants.each do |imodel|
+   # config.model "#{imodel.name}" do
+    #  list do
+     #   exclude_fields :created_at, :updated_at
+      #end
+    #end
+  #end
 
-RailsAdmin.config do |config|
-  config.authorize_with do
-    redirect_to main_app.root_path unless current_user == admin
-  end
-end
-  
   ### Popular gems integration
 
   ## == Devise ==
@@ -14,7 +15,15 @@ end
   #   warden.authenticate! scope: :user
   # end
   # config.current_user_method(&:current_user)
-
+  config.authorize_with do
+    authenticate_or_request_with_http_basic('Login required') do |username, password|
+      username == Rails.application.secrets.user &&
+      password == Rails.application.secrets.secret_key_base
+    end
+  end
+ #config.authenticate_with do
+  #  authenticate_admin!
+  #end
   ## == Cancan ==
   # config.authorize_with :cancan
 

@@ -1,7 +1,7 @@
 class CommentsController < InheritedResources::Base
 def create 
   @licture =Licture.find(params[:licture_id])
-  @comment = @licture.comments.create(params.require(:comment).permit(:id, :licture_id, :body))
+   @comment = @licture.comments.create(params.require(:comment).permit(:id, :licture_id, :body))
   
   respond_to do |format| 
     if @comment.save

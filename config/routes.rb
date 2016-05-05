@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :admins
   #devise_for :admins
   
-  resources :comments
+  #resources :comments
   resources :lictures do 
          member do 
         put "like" => "lictures#upvote"
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     
   resources :courses
  devise_for :users, controllers: { sessions: "users/sessions" , registrations: "users/registrations" }
+  #devise_for :admin
   get 'mooc/welcome'
   get 'lictures/:id/download', to: 'lictures#download',as:'download_licture'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
