@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
-  	belongs_to :user
-   	has_many :lictures
+  validates :title , :presence => true
+  belongs_to :user
+  has_many :lictures
     
 
 end

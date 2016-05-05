@@ -18,20 +18,20 @@
         <td><%= licture.content %></td>
         <td><% licture.attachment %></td>
         <td><%= licture.course.title %></td>
-         <%= link_to like_licture_path(licture), class: "like", method: :put do  %>
+        <td> <%= link_to like_licture_path(licture), class: "like", method: :put do  %>
   <button type="button" class="btn btn-info" aria-label="Left Align">
       <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
       <span class="badge"><%= licture.get_upvotes.size %> </span> 
        Likes
   </button>
-  <% end  %>
-     <%= link_to unlike_licture_path(licture), class: "like", method: :put do  %>
+<% end  %></td>
+        <td>    <%= link_to unlike_licture_path(licture), class: "like", method: :put do  %>
   <button type="button" class="btn btn-info" aria-label="Left Align">
       <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
       <span class="badge"><%= licture.get_downvotes.size %> </span> 
       Dislikes
   </button>
-  <% end  %>       
+<% end  %> </td>      
   <% if (user_signed_in? )   %>
         <td><%= link_to 'Show', licture %></td>
 <% end %>

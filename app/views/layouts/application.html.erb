@@ -1,38 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Mooc2</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>Mariam MOOC</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <style>
+      .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+  </style>
 </head>
 <body>
-<!--Login-->
-<%= link_to "Home", mooc_welcome_path %>
-<%= link_to "Log in", new_user_session_path %>
-<%= link_to "sign Out",  destroy_user_session_path,method: :delete%>
-<%= yield %>
 
-<!--Msg-->
-<% if user_signed_in? %>
-    you are signed in now and your data is
-<br>
-hello <%= current_user.name %>
-<br>  
-<%= link_to "Create Course", new_course_path %>
-    <br>
-<h3>name:</h3> <%= current_user.name %> 
-<h3>email:</h3> <%= current_user.email  %>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
 
-    <h3>Date OF birth:</h3> <%= current_user.dateofbirth %>
-    <h3>is Female ?</h3> <%= current_user.is_female %>
-    <h3>Profile Picture:</h3>  
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" id="myNavbar">
+        <% if user_signed_in? %>
+           <%= current_user.name %>
+          <li><%= link_to "signOut",  destroy_user_session_path,method: :delete ,class:"glyphicon glyphicon-log-in" %></li>     
+          <% else %>
+             <li><%= link_to "Login", new_user_session_path ,class:"glyphicon glyphicon-log-in" %></li>     
+        <% end %>   
+      </ul>
+    </div>
+  </div>
+</nav>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
 
-
-    
-
-    <%= image_tag current_user.image %>
-<%  end %>
-
+</head>
+<body>
+<div class="jumbotron">
+  <div class="container text-center">
+    <% if user_signed_in? %>
+      <h1>Hello <%= current_user.name %></h1>
+       <h5><%= image_tag current_user.image  %></h5>
+    <% end %>
+  </div>
+</div>
+ <%= yield %> 
 </body>
 </html>

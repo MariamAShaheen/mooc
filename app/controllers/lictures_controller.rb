@@ -1,6 +1,6 @@
 class LicturesController < InheritedResources::Base
 before_action :true_user, only: [:edit,:update,:destroy ]
-before_action :authenticate_user!, :except => [:show, :index]
+before_action :authenticate_user!, :except => [ :index]
 def upvote
      @licture = Licture.find(params[:id])
       @licture.upvote_from current_user
@@ -26,10 +26,11 @@ def upvote
     end
 
      def true_user
-      
-      @user = User.find(params[:id])
-      redirect_to root_path 
+      user = Licture.find(params[:id]).course.user
+      unless  user.id == current_user.id 
+                redirect_to root_path 
       end
+       end
   
   
   end
