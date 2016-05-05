@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
 	#acts_as_commontator
   mount_uploader :image, ImageUploader
 	has_many :courses
+  has_many :comments
   
 end

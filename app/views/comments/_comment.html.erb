@@ -1,8 +1,8 @@
 <%= div_for(comment) do %>
 <p>
-    <strong>Posted <%= time_ago_in_words(comment.created_at) %> ago      
+    <strong>Posted <%= time_ago_in_words(comment.created_at) %> ago   by <%= comment.user.email if comment.user %>   
     </strong></br>
     <%= comment.body %>
-    <%= comment.licture %>
+   
 </p>
 <% end %>
