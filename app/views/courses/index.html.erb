@@ -17,12 +17,15 @@
         <td><%= course.title %></td>
         <td><%= course.user %></td>
         <td><%= link_to 'Show', course %></td>
-        <% if (user_signed_in? && (current_user.id==course.user.id))   %>
+  
+  <% if (user_signed_in? && (current_user.id==course.user.id))   %>
         
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-   <%  end %>
+
+    
+    <%end %>
       <%  end %>
   </tbody>
 </table>

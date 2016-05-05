@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
   	belongs_to :user
-	has_many :lictures
+   	has_many :lictures
+    
+
 end

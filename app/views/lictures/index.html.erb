@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Lictures</h1>
+<h1>Listing Lectures</h1>
 
 <table>
   <thead>
     <tr>
       <th>Content</th>
-      <th>Attachment</th>
+     
       <th>Course</th>
       <th colspan="3"></th>
     </tr>
@@ -16,16 +16,36 @@
     <% @lictures.each do |licture| %>
       <tr>
         <td><%= licture.content %></td>
-        <td><%= licture.attachment %></td>
-        <td><%= licture.course %></td>
+        <td><% licture.attachment %></td>
+        <td><%= licture.course.title %></td>
+         <%= link_to like_licture_path(licture), class: "like", method: :put do  %>
+  <button type="button" class="btn btn-info" aria-label="Left Align">
+      <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+      <span class="badge"><%= licture.get_upvotes.size %> </span> 
+       Likes
+  </button>
+  <% end  %>
+     <%= link_to unlike_licture_path(licture), class: "like", method: :put do  %>
+  <button type="button" class="btn btn-info" aria-label="Left Align">
+      <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+      <span class="badge"><%= licture.get_downvotes.size %> </span> 
+      Dislikes
+  </button>
+  <% end  %>       
+  <% if (user_signed_in? )   %>
         <td><%= link_to 'Show', licture %></td>
+<% end %>
+    <% if (user_signed_in? && (current_user.id==licture.course.user.id))   %>        
         <td><%= link_to 'Edit', edit_licture_path(licture) %></td>
         <td><%= link_to 'Destroy', licture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <% end  %>  
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
+ <% if (user_signed_in? )   %>
 <%= link_to 'New Licture', new_licture_path %>
+<% end %>

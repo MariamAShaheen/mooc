@@ -2,6 +2,7 @@ class CoursesController < InheritedResources::Base
 before_action :true_user, only: [:edit,:update,:destroy]
 before_action :authenticate_user!, :except => [:show, :index]
 
+   
   private
   
     def course_params
@@ -15,6 +16,8 @@ before_action :authenticate_user!, :except => [:show, :index]
       @user = User.find(params[:id])
       redirect_to root_path 
       end
+      
+   
     
     end
 	

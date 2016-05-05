@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
-  resources :lictures
+  #devise_for :admins
+  
+  resources :comments
+  resources :lictures do 
+         member do 
+        put "like" => "lictures#upvote"
+        put "unlike" => "lictures#downvote"
+      end
+  resources :comments
+  end  
+   
+    
   resources :courses
  devise_for :users, controllers: { sessions: "users/sessions" , registrations: "users/registrations" }
   get 'mooc/welcome'
-  
-get 'lictures/:id/download', to: 'lictures#download',as:'download_licture'
-
+  get 'lictures/:id/download', to: 'lictures#download',as:'download_licture'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  #mount Commontator::Engine => '/commontator'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -41,8 +52,7 @@ get 'lictures/:id/download', to: 'lictures#download',as:'download_licture'
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end
