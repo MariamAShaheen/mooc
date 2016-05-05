@@ -21,7 +21,8 @@
     <%= f.file_field :attachment %>
   <div class="field">
     <%= f.label :course_id %><br>
-     <%= f.collection_select :course_id, Course.order(:title),:id,:title, include_blank: false %>
+ 
+  <%= f.collection_select :course_id,current_user.courses,:id,:title, { prompt: "Select One Of Your Courses" } %>
   </div>
   <div class="actions">
     <%= f.submit %>
